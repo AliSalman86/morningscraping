@@ -1,0 +1,33 @@
+{
+  "name": "morningscraping",
+  "version": "1.0.0",
+  "description": "An App to Scrape Data and Presen it to Users",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AliSalman86/morningscraping.git"
+  },
+  "keywords": [
+    "4"
+  ],
+  "author": "AliAS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AliSalman86/morningscraping/issues"
+  },
+  "homepage": "https://github.com/AliSalman86/morningscraping#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cheerio": "^0.22.0",
+    "express": "^4.15.2",
+    "mongojs": "^2.4.0",
+    "mongoose": "^4.8.6",
+    "morgan": "^1.8.1",
+    "path": "^0.12.7",
+    "request": "^2.81.0"
+  }
+}
