@@ -12,14 +12,14 @@ var request = require("request");
 var cheerio = require("cheerio");
 
 var Article = require("./models/Article.js");
-var Comment = require("./models/Comment.js")
+var Comment = require("./models/Comment.js");
 
 // set mongoose promise
 mongoose.Promise = Promise;
 
 // Initialize Express
 var app = express();
-var PORT = process.env.PORT || 3030;
+var PORT = process.env.PORT || 3000;
 
 // Use of morgan and body-parser
 app.use(logger("dev"));
