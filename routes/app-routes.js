@@ -57,4 +57,14 @@ module.exports = function(app) {
             }
         });
     });
+    app.get("/unsave/:id", function(req, res) {
+        Article.findOneAndUpdate({"_id": req.params.id}, {"saved": false})
+        .exec(function(error, removed) {
+            if (error) {
+                console.log(err);
+            } else {
+                res.send(removed);
+            }
+        });
+    });
 }
