@@ -14,6 +14,9 @@ var ArticleSchema = new Schema({
         type: String,
         required: true
     },
+    saved: {
+        type: Boolean
+    },
     note: {
         type: Schema.Types.ObjectId,
         ref: "Comment"

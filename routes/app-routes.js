@@ -13,7 +13,7 @@ module.exports = function(app) {
 
                 result.title = $(this).children("a").text();
                 result.link = "https://www.dealcatcher.com" + $(this).children("a").attr("href");
-
+                result.saved = false;
                 var newArticle = new Article(result);
 
                 newArticle.save(function(err, doc) {
@@ -28,12 +28,32 @@ module.exports = function(app) {
         res.send("Scrape Done!")
     });
 
-    app.get("/articles", function(req, res) {
-        Article.find({}, function(error, articles) {
+    app.get("/notSavedArticles", function(req, res) {
+        Article.find({"saved": false}, function(error, articles) {
             if (error) {
                 console.log(error);
             } else {
                 res.json(articles)
+            }
+        });
+    });
+    // find save articles to display it in the saved items page
+    app.get("/savedArticles", function(req, res) {
+        Article.find({"saved": true}, function(error, articles) {
+            if (error) {
+                console.log(error);
+            } else {
+                res.json(articles)
+            }
+        });
+    });
+    app.get("/save/:id", function(req, res) {
+        Article.findOneAndUpdate({"_id": req.params.id}, {"saved": true})
+        .exec(function(error, saved) {
+            if (error) {
+                console.log(err);
+            } else {
+                res.send(saved);
             }
         });
     });

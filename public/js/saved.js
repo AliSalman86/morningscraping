@@ -1,17 +1,7 @@
-// When clicking "Scrap me Deals" button
-// scrape route would be called to scrape data
-$("#scrapper").on("click", function() {
-    $.ajax({
-        method: "GET",
-        url: "/scrape",
-        success: getNotSavedArticles
-    });
-});
-
-function getNotSavedArticles() {
-    $("#artWell").empty();
-    $.getJSON("/notSavedArticles", function(data) {
-        for (var i = 0; i < 20; i++) {
+function getSavedArticles() {
+    $.getJSON("/savedArticles", function(data) {
+        $("#savedArtWell").empty();
+        for (var i = 0; i < data.length; i++) {
             var panel = $("<div>").addClass("panel panel-success");
             var panHeading = $("<div>").addClass("panel-heading panHeader");
             var leftSide = $("<div>").addClass("col-xs-9");
@@ -29,21 +19,9 @@ function getNotSavedArticles() {
             panHeading.append(rightSide);
             panel.append(panHeading);
             panel.append(body);
-            $("#artWell").append(panel);
+            $("#savedArtWell").append(panel);
         }
     });
 }
 
-$(document).on("click", ".save", function() {
-    var articleID = $(this).attr("data-id");
-    $.ajax({
-        type: "GET",
-        url: "/save/" + articleID
-    });
-    console.log(articleID);
-    getNotSavedArticles();
-});
-
-
-
-getNotSavedArticles();
+getSavedArticles();
