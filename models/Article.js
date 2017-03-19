@@ -17,10 +17,10 @@ var ArticleSchema = new Schema({
     saved: {
         type: Boolean
     },
-    note: {
+    comment: [{
         type: Schema.Types.ObjectId,
         ref: "Comment"
-    }
+    }]
 });
 
 // Create the Article model wiht the ArticleSchema

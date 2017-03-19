@@ -34,4 +34,43 @@ $(document).on("click", ".remove", function() {
     getSavedArticles();
 });
 
+$(document).on("click", ".note", function() {
+    $("#myModal").modal('show');
+    var artId = $(this).attr("data-id");
+    // assign the post id to the save btn
+    $(".commentSave").attr("data-id", artId);
+    $.ajax({
+        method: "GET",
+        url: "/article/" + artId
+    }).done(function(data) {
+        $("#myModalLabel").text(data.title + " Comments");
+        console.log(data)
+        // display comments if founded
+        if (data.comment) {
+            $("#commentHolder").empty();
+            for (var i = 0; i < data.comment.length; i++) {
+                var panel = $("<div>").addClass("panel panel-default");
+                var body = $("<div>").addClass("panel-body").text(data.comment[i].body);
+                body.append("<button type='button' class='close'><span aria-hidden='true'>&times;</span></button>")
+                panel.append(body);
+                $("#commentHolder").append(panel);
+            }
+        }
+    });
+});
+
+
+// posting a new comment when save camment button on the modal clicked
+$(document).on("click", ".commentSave", function() {
+    var artIdNo = $(this).attr("data-id");
+    $.ajax({
+        method: "POST",
+        url: "/article/" + artIdNo,
+        data: {
+            body: $("#textBox").val()
+        }
+    })
+    $("#textBox").val("");
+});
+
 getSavedArticles();

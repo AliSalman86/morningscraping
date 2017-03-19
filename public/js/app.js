@@ -44,6 +44,16 @@ $(document).on("click", ".save", function() {
     getNotSavedArticles();
 });
 
+$(document).on("click", ".delete", function() {
+    var articleID = $(this).attr("data-id");
+    $.ajax({
+        type: "GET",
+        url: "/delete/" + articleID
+    });
+    console.log(articleID);
+    getNotSavedArticles();
+});
+
 
 
 getNotSavedArticles();
