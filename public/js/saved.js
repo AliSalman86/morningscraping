@@ -37,7 +37,7 @@ $(document).on("click", ".remove", function() {
 $(document).on("click", ".note", function() {
     $("#myModal").modal('show');
     var artId = $(this).attr("data-id");
-    // assign the post id to the save btn
+    // assign the post id to the save btn and comment remove btn
     $(".commentSave").attr("data-id", artId);
     $.ajax({
         method: "GET",
@@ -72,5 +72,11 @@ $(document).on("click", ".commentSave", function() {
     })
     $("#textBox").val("");
 });
+
+// event listener to delete the comment when pressing 'X'
+
+$(document).on("click", ".close", function() {
+    $(this).parents("panel").remove();
+})
 
 getSavedArticles();

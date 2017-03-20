@@ -4,7 +4,8 @@ $("#scrapper").on("click", function() {
     $.ajax({
         method: "GET",
         url: "/scrape",
-        success: getNotSavedArticles
+    }).done(function() {
+        getNotSavedArticles();
     });
 });
 
